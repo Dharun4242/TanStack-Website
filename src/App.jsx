@@ -1,12 +1,17 @@
-import ProductList from './pages/ProductList';
 
-function App() {
+import { Suspense, lazy } from "react";
+import Loader from "./components/Loader.jsx";
+
+const ProductList = lazy(() => import("./pages/ProductList.jsx"));
+
+
+export default function App() {
   return (
-    <div className="min-h-screen bg-gray-100 p-4">
-      <h1 className="text-3xl font-bold mb-4">Products</h1>
-      <ProductList />
+   <div>
+      
+      <Suspense fallback={<Loader />}>
+        <ProductList />
+      </Suspense>
     </div>
   );
 }
-
-export default App;
